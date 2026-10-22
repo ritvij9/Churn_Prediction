@@ -26,8 +26,37 @@ def load_data():
 
 
 def split_data(X, y):
+    """Return the existing stratified 80/20 train/test split."""
     return train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+
+def split_data_three_way(X, y):
+    """Return stratified 60% train, 20% validation, and 20% test sets."""
+    X_train, X_temp, y_train, y_temp = train_test_split(
+        X,
+        y,
+        test_size=0.4,
+        random_state=42,
+        stratify=y,
+    )
+
+    X_validation, X_test, y_validation, y_test = train_test_split(
+        X_temp,
+        y_temp,
+        test_size=0.5,
+        random_state=42,
+        stratify=y_temp,
+    )
+
+    return (
+        X_train,
+        X_validation,
+        X_test,
+        y_train,
+        y_validation,
+        y_test,
     )
 
 
