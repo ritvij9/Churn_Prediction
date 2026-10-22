@@ -78,3 +78,20 @@ src/        Data inspection, preparation and modelling scripts
 tests/      Automated data checks
 reports/    Generated metrics and evaluation charts
 ```
+
+## Retention Campaign Threshold Analysis
+
+The logistic regression model was evaluated at different probability thresholds on the held-out test set.
+
+| Threshold | Customers flagged | Churners identified | Precision | Recall |
+|---:|---:|---:|---:|---:|
+| 0.2 | 685 | 320 | 46.7% | 85.6% |
+| 0.3 | 543 | 282 | 51.9% | 75.4% |
+| 0.4 | 440 | 250 | 56.8% | 66.8% |
+| 0.5 | 318 | 209 | 65.7% | 55.9% |
+| 0.6 | 209 | 150 | 71.8% | 40.1% |
+| 0.7 | 93 | 69 | 74.2% | 18.4% |
+
+A lower threshold flags more customers and captures more churners, but also produces more false positives. A higher threshold reduces outreach volume while missing more churners.
+
+These are retrospective results on a held-out test set. The appropriate operational threshold depends on retention-team capacity, intervention cost, customer value, and the effectiveness of retention offers. These results do not establish that contacting flagged customers will prevent churn.
